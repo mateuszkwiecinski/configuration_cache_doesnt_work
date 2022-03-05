@@ -13,7 +13,7 @@ abstract class GreetingTask extends DefaultTask {
 
     @TaskAction
     def greet() {
-        println 'hello from GreetingTask'
+        println "filters=${filters.get()}"
     }
 }
 
@@ -23,6 +23,13 @@ class SomeClass implements Serializable {
 
     SomeClass(Color color) {
         this.color = color;
+    }
+
+    @Override
+    public String toString() {
+        return "SomeClass{" +
+                "color=" + color +
+                '}';
     }
 }
 
