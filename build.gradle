@@ -4,11 +4,11 @@ import javax.inject.Inject
 abstract class GreetingTask extends DefaultTask {
 
     @Input
-    ListProperty<Color> filters
+    Property<Color> filters
 
     @Inject
     GreetingTask(ObjectFactory objectFactory) {
-        filters = objectFactory.listProperty(Color.class);
+        filters = objectFactory.property(Color.class);
     }
 
     @TaskAction
@@ -19,5 +19,5 @@ abstract class GreetingTask extends DefaultTask {
 
 // Create a task using the task type
 tasks.register('repro', GreetingTask) {
-    filters = [Color.RED]
+    filters = Color.RED
 }
