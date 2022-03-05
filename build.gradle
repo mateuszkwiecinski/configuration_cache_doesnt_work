@@ -4,11 +4,11 @@ import javax.inject.Inject
 abstract class GreetingTask extends DefaultTask {
 
     @Input
-    ListProperty<SomeClass> filters
+    ListProperty<Color> filters
 
     @Inject
     GreetingTask(ObjectFactory objectFactory) {
-        filters = objectFactory.listProperty(SomeClass.class);
+        filters = objectFactory.listProperty(Color.class);
     }
 
     @TaskAction
@@ -17,23 +17,7 @@ abstract class GreetingTask extends DefaultTask {
     }
 }
 
-class SomeClass implements Serializable {
-
-    private final Color color;
-
-    SomeClass(Color color) {
-        this.color = color;
-    }
-
-    @Override
-    public String toString() {
-        return "SomeClass{" +
-                "color=" + color +
-                '}';
-    }
-}
-
 // Create a task using the task type
 tasks.register('repro', GreetingTask) {
-    filters = [new SomeClass(Color.RED)]
+    filters = [Color.RED]
 }
